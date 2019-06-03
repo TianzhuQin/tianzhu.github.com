@@ -11,15 +11,15 @@ Did you feel sick when making budget or trying to save money for a new iPhone? I
 
 ### Model display
 <p float="left">
-  <img src="/assets/img/wecoin-screenshot/1.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/2.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/3.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/4.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/5.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/8.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/9.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/10.jpg" width="240" />
-  <img src="/assets/img/wecoin-screenshot/11.jpg" width="240" />
+  <img src="/assets/img/wecoin-screenshot/1.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/2.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/3.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/4.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/5.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/8.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/9.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/10.jpg" width="330" />
+  <img src="/assets/img/wecoin-screenshot/11.jpg" width="330" />
 </p>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home

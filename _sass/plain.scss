@@ -14,7 +14,7 @@ $leftWidth: 220px;
 
 body {
 	font-family: 'Raleway', sans-serif;
-	font-size: 16px;
+	font-size: 22px;
 	line-height: 1.2em;
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
@@ -69,6 +69,7 @@ main {
 	.about {
 		display: flex;
 		height: 100vh;
+		margin-top: 30px;
 		padding-bottom: 15vh;
 		@media screen and (max-width: $mobileW) {
 			height: auto;	
@@ -82,7 +83,7 @@ main {
 		flex-direction: column;
 		align-items: center;
 		h2 {
-			font-size: 22px;
+			font-size: 38px;
 			margin-top: 25px;
 			margin-bottom: 0;
 			color: #222222;
@@ -99,7 +100,7 @@ main {
 			color: #aaa;
 		}
 		img {
-			max-width: 150px;
+			max-width: 170px;
 		}
 	}
 }

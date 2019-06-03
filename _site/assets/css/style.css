@@ -547,7 +547,7 @@ pre.highlight, code {
 
 body {
   font-family: 'Raleway', sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.2em;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -593,6 +593,7 @@ main {
   main .about {
     display: flex;
     height: 100vh;
+    margin-top: 30px;
     padding-bottom: 15vh;
     min-width: 220px;
     justify-content: center;
@@ -606,7 +607,7 @@ main {
       main .about {
         position: fixed; } }
     main .about h2 {
-      font-size: 22px;
+      font-size: 38px;
       margin-top: 25px;
       margin-bottom: 0;
       color: #222222;
@@ -620,7 +621,7 @@ main {
       margin-bottom: 30px;
       color: #aaa; }
     main .about img {
-      max-width: 150px; }
+      max-width: 170px; }
 
 .social {
   list-style-type: none;
