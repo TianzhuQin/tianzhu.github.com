@@ -1,10 +1,8 @@
 # Tianzhu Qin's homepage 
 
-## built by Jekyll -- theme by plainwhite
-
-## constructed at Jun. 1st in London
-
-## Many others to be continued..
+built by Jekyll -- theme by plainwhite
+constructed at Jun. 1st in London
+Many others to be continued..
 
 ## License
 
