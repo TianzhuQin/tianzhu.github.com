@@ -2,11 +2,10 @@
 layout: post
 title:  "AI Trader"
 date:   2019-05-03 05:10:20 +0320
+tourl: "/assets/work/Tianzhu_Qin_AI_Stock-Market-Trading.html"
 categories: AI Deep-Direct-Reinforcement-Network Deep-Q-Network Stock-Market
-excerpt: Have you ever been thinking about hiring an AI to help you trading? I hereby provide DDRN and DQN two methods to help you guys fighting with the stock market. It turns out that different configurations do result in differing outcome. Pick up one you like and enjoy the money. PS: I will not be responsible if you lose any. But if you earn something please rememeber me and give me a star ;) <br> <img src="/assets/img/DRL.png" height="450" width="500">
+excerpt: Have you ever been thinking about hiring an AI to help you trade? I hereby provide DDRN and DQN methods to assist you in stock market. It turns out that different configurations do result in differing outcome. Pick up one you like and enjoy the money. <br> (PS) I will not be responsible if you lose any. But if you earn something please give me a star ;) <br> <img src="/assets/img/DRL.png" height="450" width="300">
 ---
-
-<object data="/assets/work/Tianzhu_Qin_AI_Stock-Market-Trading.html" width="1000" height="1150" type='application/pdf'/>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
