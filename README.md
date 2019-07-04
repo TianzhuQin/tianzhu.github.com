@@ -1,6 +1,6 @@
 # Tianzhu Qin's homepage 
 
-tianzhuqin.github.io
+https://tianzhuqin.github.io
 
 Built by Jekyll -- theme by plainwhite
 
