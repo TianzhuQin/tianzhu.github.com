@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Tianzhu_Qin_ST449_Project</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Tianzhu_Qin_ST449_Project-Copy2</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11783,10 +11783,19 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h2><p><strong>Stock market</strong> is famous for its unpredictable characteristic, and the kinds of <strong>trading strategies</strong> are so massive that one can hardly learn all of them in a short period. However, people tend to fill in this market once any related "information" are acquired, without regard to how much capital they hold or sometimes even without regard to how much time they can spare reasonably.</p>
-<p>The two pain points of trading in this market are <strong>1)</strong> how to predict further variation of the stock; <strong>2)</strong> how to perform in terms of the corresponding variation. The stock price prediction is very hard due to the uncertainty of the stock itself, with many outer issues affecting the market. As for actions, methods by tradional financial statistics roughly calculate the variation of the portfolio and distribute the investment well to minimize that, which does not certainy results to a high return at last.</p>
-<p>Fortunately, <strong>Deep Learning</strong> methods such as <strong>Convolution Neural Network</strong>, <strong>Recurrent Neural Network</strong> or even just <strong>Deep Fully Connected Network</strong>, are very useful for prediction, especially the time-series data, which is correlated among stocks. What is more fortunate, <strong>Reinforcement</strong> (which can be showed as <strong>Recurrent</strong>) thoughts are helpful to represent the long-time trading. On the other words, action to take each trading day can be acquired by these minds.</p>
-<p>To take the research, the essay hereby utilize two main different trading algorithm, <strong>Deep Direct Reinforcement Network</strong> and <strong>Deep Q Network</strong>, while each main algorithm has differing forms to dive further, so as to acquire outcomes, as excellent as possible and as stable as possible. All evaluations and sensitivity-analysis in need follow the corresponding algorithms.</p>
+<h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h2><p><em>The essay hererby provides Reinforcement Learning strategies to make trading in stock market. Deep Direct Reinforcement Network, which utilizes Deep Learning to find the tendency of stock prices and Recurrent Neural Network to excute buy/sell action, performs robustly that constantly makes profits in various combinations of hyper-parameters. The essay implement differing kinds of Deep Learning, say Deep Fully Connected Network, Convolution Neural Network and Recurrent Neural Network to predict stock prices in the future. All of them, with sensitive analysis, have good performance. The essay also implements Deep Q Learning, which decides the action by monitoring the Q-value of the buy/sell option it will take. The result is not as good, mainly because that Q-table is not easily gotten for time series data, although evident upward tendency is shown when training. Overall, the work makes comparative analysis of the two models, DDRN and DQN, and gives suggestions on trading with Reinforcement Learning.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h2><p><strong>Stock market</strong> is famous for its unpredictable characteristic, and the kinds of <strong>trading strategies</strong> are so massive that one can hardly learn all of them in a short period (Heaton et al., 2017).</p>
+<p>The two pain points of trading in this market are <strong>1)</strong> how to predict further variation of the stock; <strong>2)</strong> how to perform in terms of the corresponding variation. The stock price prediction is very hard due to the uncertainty of the stock itself, with many outer issues affecting the market (Heaton et al., 2017; Deng et al., 2016; Kimoto et al., 1990; Schöneburg &amp; Eberhard, 1990). As for actions, methods by tradional financial statistics roughly calculate the variation of the portfolio and distribute the investment well to minimize that, which does not certainy results to a high return at last (Jondeau et al., 2006).</p>
+<p>Fortunately, <strong>Deep Learning</strong> methods such as <strong>Convolution Neural Network</strong>, <strong>Recurrent Neural Network</strong> or even just <strong>Deep Fully Connected Network</strong>, are very useful for prediction, especially the time-series data, which is correlated among stocks. What is more fortunate, <strong>Reinforcement</strong> (which can be showed as <strong>Recurrent</strong>) thoughts are helpful to represent the long-time trading. On the other words, action to take each trading day can be acquired by these minds (Fischer &amp; Krauss, 2018; Heaton et al., 2017; Deng et al., 2016; Choi et al., 2009).</p>
+<p>To take the research, the essay hereby utilize two main different trading algorithm, <strong>Deep Direct Reinforcement Network</strong>and <strong>Deep Q Network</strong> (Mnih et al., 2015; Heaton et al., 2017), while each main algorithm has differing forms to dive further, so as to acquire outcomes, as excellent as possible and as stable as possible. All evaluations and sensitivity-analysis in need follow the corresponding algorithms.</p>
 <h4 id="Abbreviation"><em>Abbreviation</em><a class="anchor-link" href="#Abbreviation">&#182;</a></h4><ul>
 <li><em>DL: Deep Learning</em></li>
 <li><em>DNN: Deep Neural Network</em></li>
@@ -14492,7 +14501,8 @@ f0fuEJ9nsXxOAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>The graph hereby presents the five stocks prices and their log returns. The second row of graphs are the smoothing and special cases removing version. The Apple and Google stock price have sharp declines around 2014, because they undertook the stock redistribution resulting price falling dramatically. The essay will thus use this time to split training and testing data if we choose these stocks.</p>
+<blockquote><p>The graph hereby presents the five stocks prices and their log returns. The second row of graphs are the smoothing and special cases removing version.</p>
+<p>The Apple and Google stock price have sharp declines around 2014, because they undertook the stock redistribution resulting price falling dramatically. To deal with that, the essay will thus use this time to split training and testing data if we choose these stocks.</p>
 </blockquote>
 
 </div>
@@ -14513,9 +14523,11 @@ f0fuEJ9nsXxOAAAAAElFTkSuQmCC
 <h3 id="3.1-Direct-Reinforcement-Network-(DRN)">3.1 Direct Reinforcement Network (DRN)<a class="anchor-link" href="#3.1-Direct-Reinforcement-Network-(DRN)">&#182;</a></h3><p>Deep Neural Network is able to provide a brilliant classifier or predict further possible outcome. Reinforcement Network otherwise can include the state so far, the action it may produce and the state plus the action will result to the next state as well as the reward for this action. The essay hereby combines the two into Deep Direct Reinforcement Network (DDRN), where Deep Neural Network works for prediction by the stock price and Reinforcement Network makes the action and stores the states and rewards for further iteration. The graph is showed below:</p>
 <center>
 
-<p><img src="picture/DRL.png" width="270" height="200" /></p>
-<p>&lt;/center&gt;
-Action here is the distribution of the investment among the stocks, reward is the profits we gain, and the state is the stock log return during the last few days. It is also noted that this DRL cell is like the squential situation, which also takes the input step by step and convey and iterate the state sequentially. Therefore, the essay implemented the DRL by a squential structure, with all states, actions and rewards updated with trading days going by. The codes are showed below:</p>
+<img src="picture/DRL.png" width="270" height="200" />
+
+</center><p><strong>Action</strong> here is to adjust the investment distribution according to the output of the Neural Network, i.e. if the output is x, y, z and then the agent will distribute all assets (including capital and profits) with regard to x:y:z.</p>
+<p><strong>Reward</strong> is the profits we gain, and <strong>state</strong> is the stock log return during the last few days.</p>
+<p>It is also noted that this DRL cell is like the squential situation, which also takes the input step by step and convey and iterate the state sequentially. Therefore, the essay implemented the DRL by a squential structure, with all states, actions and rewards updated with trading days going by. The codes are showed below:</p>
 
 </div>
 </div>
@@ -14559,8 +14571,53 @@ Action here is the distribution of the investment among the stocks, reward is th
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.2-Convolution-Neural-Network-(CNN)">3.2 Convolution Neural Network (CNN)<a class="anchor-link" href="#3.2-Convolution-Neural-Network-(CNN)">&#182;</a></h3><p>For DNN, the first kind of network the essay uses is Convolution Neural Network, which is famous for its fast and direct process towards matrix. Similarly, for financial data, if we have many stocks and each stock has many trading days' prices, it is naturally a good matrix data well designed for CNN.</p>
-<p>The essay hereby produces the values with the length equals to the number of stocks the essay use for trading or making portfolio, to monitor the return of each stock in the future. The codes are showed below:</p>
+<h3 id="3.2-Convolution-Neural-Network-(CNN)">3.2 Convolution Neural Network (CNN)<a class="anchor-link" href="#3.2-Convolution-Neural-Network-(CNN)">&#182;</a></h3><p>For DNN, the first kind of network the essay uses is Convolution Neural Network, which is famous for its fast and direct process towards matrix. Similarly, for financial data, if we have many stocks and each stock has many trading days' prices, it is naturally a good matrix data well designed for CNN (Krizhevsky et al., 2012).</p>
+<p>The essay hereby produces the values with the length equals to the number of stocks the essay use for trading or making portfolio, to monitor the return of each stock in the future. The configurations and codes are showed below:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Dates * Stocks</td>
+</tr>
+<tr>
+<td>Conv1</td>
+<td>5 <em> 5 </em> 12</td>
+</tr>
+<tr>
+<td>Pool1</td>
+<td>2 * 2</td>
+</tr>
+<tr>
+<td>Conv2</td>
+<td>5 <em> 5 </em> 24</td>
+</tr>
+<tr>
+<td>Pool2</td>
+<td>2 * 2</td>
+</tr>
+<tr>
+<td>Dense</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Dense</td>
+<td>Stocks</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -14614,7 +14671,7 @@ Action here is the distribution of the investment among the stocks, reward is th
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.3-Recurrent-Neural-Network-(RNN)">3.3 Recurrent Neural Network (RNN)<a class="anchor-link" href="#3.3-Recurrent-Neural-Network-(RNN)">&#182;</a></h3><p>For DNN as well, the second kind of network the essay uses is Recurrent Neural Network, which is famous for its ability towards the sequential data, especially time series data, which is also an important nature of financial data. The essay chooses the two cells that are popular when confronting the highly correlated data, such as stock return among the S&amp;P100:</p>
+<h3 id="3.3-Recurrent-Neural-Network-(RNN)">3.3 Recurrent Neural Network (RNN)<a class="anchor-link" href="#3.3-Recurrent-Neural-Network-(RNN)">&#182;</a></h3><p>For DNN as well, the second kind of network the essay uses is Recurrent Neural Network (Chung et al., 2014; Hochreiter et al., 1997), which is famous for its ability towards the sequential data, especially time series data, which is also an important nature of financial data. The essay chooses the two cells that are popular when confronting the highly correlated data, such as stock return among the S&amp;P100:</p>
 <ul>
 <li><strong>Gated Recurrent Units (GRU)</strong></li>
 <li><strong>Long Short-Term Memory (LSTM)</strong></li>
@@ -14666,7 +14723,7 @@ Action here is the distribution of the investment among the stocks, reward is th
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.4-Deep-Fully-Connected-Network-(DFCN)">3.4 Deep Fully Connected Network (DFCN)<a class="anchor-link" href="#3.4-Deep-Fully-Connected-Network-(DFCN)">&#182;</a></h3><p>The essay not only takes the price or return as the inputs for DNN. Hereby we  introduce a special process the essay undertakes to remain the most of previous information (state). For the output of CNN or RNN, it will be sent to the next DFCN, where the <strong>previous investment distribution</strong> among each stock is also input. The two combined as the input will result to the output with the length equals to the number of stocks. And these values then go through "softmax" so as to sum them to one. The graphs and codes are showed below:</p>
+<h3 id="3.4-Deep-Fully-Connected-Network-(DFCN)">3.4 Deep Fully Connected Network (DFCN)<a class="anchor-link" href="#3.4-Deep-Fully-Connected-Network-(DFCN)">&#182;</a></h3><p>The essay not only takes the price or return as the inputs for DNN (Lin et al., 2013). Hereby we  introduce a special process the essay undertakes to remain the most of previous information (state). For the output of CNN or RNN, it will be sent to the next DFCN, where the <strong>previous investment distribution</strong> among each stock is also input. The two combined as the input will result to the output with the length equals to the number of stocks. And these values then go through "softmax" so as to sum them to one. The graphs and codes are showed below:</p>
 <center>
 
 <img src="picture/DNN.png" width="450" height="200" />
@@ -15626,6 +15683,16 @@ AAAAAEAQ/x9AVAHfExRLlQAAAABJRU5ErkJggg==
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>The graphs here show how the final return changes when training goes on.</p>
+</blockquote>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -16625,6 +16692,16 @@ fzcqEE8gnprjAAAAAElFTkSuQmCC
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Finally, Amazon's proportion that the agent holds tend to be the largest, which obeys with the truth that Amazon's stock is booming all the time to the peak.</p>
+</blockquote>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -17914,6 +17991,17 @@ X1XTw+CtJicjAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>The graphs compare the final return corresponding to the training times, with different hyper-parameters. Hopefully all of them are robust to make profits for us.</p>
+<p>It is worth noticing that some returns tends to decline after long time training, which might mean they are overfitting. For example, the violet in the midlle (step=100) has too many variables, which, as bias-variance tradeoff, makes the model too variance.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>From the sensitivity analysis of learning rate above in the first graph, we can see learning rate will influence the work a bit. Its decrease evidently increases the return, and does not spend much longer time to converge. The shorter path will lead to global optimization easily. And it can be seen that larger learning rate tends to give unstable results which may lead to leave optimization occasionally.</p>
 <p>For the step we hire an agent, the longer takes more money with no doubts, and the proportions among them are quite well, although the longer time period may takes more uncertainty, which means the return starts to fluctuate with steps going larger.</p>
 <p>As for the Number of stocks that we use to give DNN to predict, interestingly we can find that there seems to unstable result. The 10 stocks method gives less return than 8 stocks method, which overwhelms the others. On the contrary, the least return is provided by 4 stocks method rather than 2 stocks method, which may result from that less stocks method is easier to handle for the agent, if the information from other stocks is not enough. The graph shows that more stocks we have tend to produce more profits. This agent can be spread to larger portfolio management.</p>
@@ -17937,8 +18025,20 @@ X1XTw+CtJicjAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.1-Agent-Deployment">4.1 Agent Deployment<a class="anchor-link" href="#4.1-Agent-Deployment">&#182;</a></h3><p>The essay takes the algorithm from <em>Human-level control through deep reinforcement learning</em> (Mnih et al., 2015). For the sake of learning, I write it by keras API here to just save the model time. The experience replay algorithm is also showed. The memoryD stores the state-actoin-reward pairs to update the DNN.</p>
+<h3 id="4.1-Agent-Deployment">4.1 Agent Deployment<a class="anchor-link" href="#4.1-Agent-Deployment">&#182;</a></h3><p>The essay takes the algorithm from <em>Human-level control through deep reinforcement learning</em> (Mnih et al., 2015) as below. For the sake of learning, I write it by keras API here to just save the model time. The experience replay algorithm is also showed. The memoryD stores the state-actoin-reward pairs to update the DNN.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>
+
+<img src="picture/algorithm.png" width="450" height="200" />
+
+</center>
 </div>
 </div>
 </div>
@@ -18069,15 +18169,15 @@ X1XTw+CtJicjAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4.3-Discuss">4.3 Discuss<a class="anchor-link" href="#4.3-Discuss">&#182;</a></h3><p>The return will imporve after long time training, but too slowly, which has been testified, but cannot be showed here due to the composition. The results for DQN agent are not very satisfactory, which I think has three reasons.</p>
-
-<pre><code>Firstly, the model needs the overall understanding towards the actions. For example, video games do limited actions that can be calculated for each Q values. However, it is not easy as well to difine the actions in stock market. Buying or selling has differing forms, with the amount, the time, the exchange and so on to concern. So if the action policy is not stable or practical, the agent will unlikely lead to global optimization. It is alike if we use DQN to play _Mario_, only telling the agent that player can jump, without saying one can also jump high and jump low. The agent will learn, but it is too slow. 
-
-Secondly, unlike games can be played again and again. The stock market data is actually limited. Thus, the environment for agent to learn is not quite enough.
-
-Lastly, a game always have a rule since it is made by people, but stock market rule is even harder to confirm whether there is a rule and whether this rule is useful next time.
-
-</code></pre>
+<h3 id="4.3-Discuss">4.3 Discuss<a class="anchor-link" href="#4.3-Discuss">&#182;</a></h3><p>The return will imporve after long time training, but too slowly, which has been testified, but cannot be showed here due to the composition. The results for DQN agent are not very satisfactory, this is actually a drawback of DQN that it cannot monitor the time series very well, since time series data has many possible rules, i.e. the Q-values of the action is hard to monitor automatically with this Experience Replay （Zheng et al., 2016; Zheng et al., 2014; Längkvis et al., 2014):</p>
+<ul>
+<li><p>Firstly, the model needs the overall understanding towards the actions. For example, video games do limited actions that can be calculated for each Q values. However, it is not easy as well to define the actions in stock market. Buying or selling has differing forms, with the amount, the time, the exchange and so on to concern. So if the action policy is not stable or practical, the agent will unlikely lead to global optimization. E.g. if we use DQN to play <em>Mario</em>, only telling the agent that player can jump, without saying one can also jump high and jump low. The agent will learn, but it is too slow.</p>
+</li>
+<li><p>Secondly, unlike games can be played again and again to train by themselves when restarting the games. The stock market data is actually limited and the amount is not big at all to excute the long-time training. Thus, the environment for agent to learn is not quite enough.</p>
+</li>
+<li><p>Lastly, a game always have a rule since it is made by people, but stock market rule is even harder to confirm whether there is a rule and whether this rule is useful next time.</p>
+</li>
+</ul>
 <p>In spite of them, with my policy hereby, the agent can learn to perform better to achieve more profits, though very slowly.</p>
 
 </div>
@@ -18145,6 +18245,16 @@ No.9 Epoch: Train: 10221.27
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>The model training is very computational consuming, the essay only shows several Epochs to show the main intuitives, since it cannot give good result, as explained previous.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="5.-Conclusion">5. Conclusion<a class="anchor-link" href="#5.-Conclusion">&#182;</a></h2>
 </div>
 </div>
@@ -18166,16 +18276,30 @@ No.9 Epoch: Train: 10221.27
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="7.-Reference">7. Reference<a class="anchor-link" href="#7.-Reference">&#182;</a></h2><p>Deng Y , Bao F , Kong Y , et al. Deep Direct Reinforcement Learning for Financial Signal Representation and Trading[J]. IEEE Transactions on Neural Networks and Learning Systems, 2016, 28(3):1-12.</p>
-<p>Heaton J B , Polson N G , Witte J H . Deep Learning in Finance[J]. 2016.</p>
+<h2 id="6.-Reference">6. Reference<a class="anchor-link" href="#6.-Reference">&#182;</a></h2><p>Choi, James J., et al. "Reinforcement learning and savings behavior." The Journal of finance 64.6 (2009): 2515-2534.</p>
+<p>Chung, Junyoung, et al. "Empirical evaluation of gated recurrent neural networks on sequence modeling." arXiv preprint arXiv:1412.3555 (2014).</p>
+<p>Deng Y , Bao F , Kong Y , et al. Deep Direct Reinforcement Learning for Financial Signal Representation and Trading[J]. IEEE Transactions on Neural Networks and Learning Systems, 2016, 28(3):1-12.</p>
+<p>Fischer, Thomas, and Christopher Krauss. "Deep learning with long short-term memory networks for financial market predictions." European Journal of Operational Research 270.2 (2018): 654-669.</p>
+<p>Gers, Felix A., Jürgen Schmidhuber, and Fred Cummins. "Learning to forget: Continual prediction with LSTM." (1999): 850-855.</p>
+<p>Heaton, J. B., N. G. Polson, and Jan Hendrik Witte. "Deep learning for finance: deep portfolios." Applied Stochastic Models in Business and Industry 33.1 (2017): 3-12.</p>
 <p>Heaton, Jeff. Ian Goodfellow, Yoshua Bengio, and Aaron Courville: Deep learning[J]. Genetic Programming and Evolvable Machines, 2017.</p>
-<p>Human-level control through deep reinforcement learning[J]. Nature, 2015, 518(7540):529-533.</p>
+<p>Hochreiter, Sepp, and Jürgen Schmidhuber. "Long short-term memory." Neural computation 9.8 (1997): 1735-1780.</p>
 <p>Jiang Z , Xu D , Liang J . A Deep Reinforcement Learning Framework for the Financial Portfolio Management Problem[J]. Papers, 2017.</p>
-<p>Keon. Deep Q-Learning with Keras and Gym[EB/OL]. 2018. Retrieved from <a href="https://keon.io/deep-q-learning/">https://keon.io/deep-q-learning/</a></p>
-<p>llSourcell. Stock Price Prediction using Reinforcement Learning[EB/OL]. 2017.  Retrieved from <a href="https://github.com/llSourcell/Machine_Learning_Journey">https://github.com/llSourcell/Machine_Learning_Journey</a></p>
+<p>Jondeau, Eric, and Michael Rockinger. "Optimal portfolio allocation under higher moments." European Financial Management 12.1 (2006): 29-55.</p>
+<p>Keon. Deep Q-Learning with Keras and Gym[EB/OL]. 2018. Retrieved from <a href="https://keon.io/deep-q-learning/">https://keon.io/deep-q-learning/</a>.</p>
+<p>Kimoto, Takashi, et al. "Stock market prediction system with modular neural networks." 1990 IJCNN international joint conference on neural networks. IEEE, 1990.</p>
+<p>Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems. 2012.</p>
+<p>Längkvist, Martin, Lars Karlsson, and Amy Loutfi. "A review of unsupervised feature learning and deep learning for time-series modeling." Pattern Recognition Letters 42 (2014): 11-24.</p>
+<p>Lin, Min, Qiang Chen, and Shuicheng Yan. "Network in network." arXiv preprint arXiv:1312.4400 (2013).</p>
+<p>llSourcell. Stock Price Prediction using Reinforcement Learning[EB/OL]. 2017.  Retrieved from <a href="https://github.com/llSourcell/Machine_Learning_Journey">https://github.com/llSourcell/Machine_Learning_Journey</a>.</p>
+<p>Mnih, Volodymyr, et al. "Human-level control through deep reinforcement learning." Nature 518.7540 (2015): 529.</p>
 <p>Saad W . Comparative study of stock trend prediction using time delay, recurrent and probabilistic neural network[J]. IEEE Transactions on Neural Networks, 1998, 9(6):1456-70.</p>
-<p>Sutton R S  , Barto A G. Reinforcement Learning: An Introduction[J]. 1998.</p>
+<p>Schöneburg, Eberhard. "Stock price prediction using neural networks: A project report." Neurocomputing 2.1 (1990): 17-27.
+Sutton R S  , Barto A G. Reinforcement Learning: An Introduction[J]. 1998.</p>
 <p>Zhan. R, He T, Li Y. Deep Reinforcement Learning in Portfolio Management[EB/OL].2018. Retrieved from <a href="https://ruohanzhan.github.io/research.html">https://ruohanzhan.github.io/research.html</a></p>
+<p>Zhang, Yudong, and Lenan Wu. "Stock market prediction of S&amp;P 500 via combination of improved BCO approach and BP neural network." Expert systems with applications 36.5 (2009): 8849-8854.</p>
+<p>Zheng, Yi, et al. "Exploiting multi-channels deep convolutional neural networks for multivariate time series classification." Frontiers of Computer Science 10.1 (2016): 96-112.</p>
+<p>Zheng, Yi, et al. "Time series classification using multi-channels deep convolutional neural networks." International Conference on Web-Age Information Management. Springer, Cham, 2014.</p>
 
 </div>
 </div>
