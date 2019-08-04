@@ -1,8 +1,10 @@
 # Tianzhu Qin's homepage 
 
-built by Jekyll -- theme by plainwhite
+https://tianzhuqin.github.io
 
-constructed at Jun. 1st in London
+Built by Jekyll -- theme by plainwhite
+
+Constructed at Jun. 1st in London
 
 Many others to be continued..
 
