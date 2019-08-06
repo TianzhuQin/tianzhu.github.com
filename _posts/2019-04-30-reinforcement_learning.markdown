@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Reinforcement Learning Review"
+title:  "Reinforcement Learning in a Game"
 date:   2019-04-30 05:10:20 +0320
 tourl: "/assets/work/Tianzhu_Reinforcement.html"
 categories: Dynamic-Programming Monte-Carlo TD SARSA
