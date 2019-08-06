@@ -4,7 +4,7 @@ title:  "Financial Planner APP"
 date:   2019-03-01 02:05:20 +0320
 tourl: 
 categories: Finance WeChat APP
-excerpt: A partner for freshman to save money.
+excerpt: A partner for freshman to save money. <br> <img src="/assets/img/wecoin-screenshot/1.jpg" height="450" />
 ---
 
 Did you feel sick when making budget or trying to save money for a new iPhone? I made a WeChat APP, looking for a way to make life better. Just let me know if you are interested!
