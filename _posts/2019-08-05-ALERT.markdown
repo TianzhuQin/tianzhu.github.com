@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "【飞行途中】非常抱歉，我将于周五(8月16日)00:30-13:30在空中飞行，恐难收到电话，请先添加我的微信15070828798，我将利用空中Wi-Fi保持联系，也将在落地之后与您回复。"
+date:   2019-08-15 02:05:20 +0320
+tourl: 
+categories: Notification
+excerpt: 本网页展示了我近期的算法/数据工程，如您感兴趣与我交流，我将非常感谢能获得指点。
+---
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
